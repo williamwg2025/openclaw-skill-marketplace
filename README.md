@@ -6,7 +6,16 @@
 
 ## ✨ 功能
 
-- 🛒 **技能发现** - 浏览/搜索技能
+### 🎯 智能推荐（v1.1.0 新增）
+- **场景推荐** - 根据使用场景推荐技能组合（开发编程、内容创作等）
+- **行业推荐** - 根据行业领域推荐（互联网、金融、教育等）
+- **身份推荐** - 根据职业身份推荐（开发者、设计师、学生等）
+- **基础必装** - 所有用户都应该安装的基础技能
+- **排行榜** - Top 100 热门技能排行
+
+### 🔍 技能发现
+- 🛒 **浏览技能** - 查看所有可用技能
+- 🔎 **搜索技能** - 按名称/标签搜索
 - ⭐ **评分评论** - 用户评分和评论
 - 📊 **排行榜** - 下载量/评分排行
 - 🔔 **更新提醒** - 技能更新通知
@@ -25,27 +34,46 @@ cd ~/.openclaw/workspace/skills
 
 ## 📖 使用
 
-### 浏览技能
+### 🎯 智能推荐（v1.1.0 新增）
 
 ```bash
+# 根据场景推荐
+python3 skill-marketplace/scripts/recommend.py --scenario "开发编程"
+# 输出：推荐技能组合 + 安装命令
+
+# 根据行业推荐
+python3 skill-marketplace/scripts/recommend.py --industry "互联网"
+
+# 根据身份推荐
+python3 skill-marketplace/scripts/recommend.py --role "开发者"
+
+# 查看基础必装技能
+python3 skill-marketplace/scripts/recommend.py --basic
+# 输出：5 个基础必装技能（auto-backup, model-switch, memory-enhancer 等）
+
+# 查看排行榜 Top 10
+python3 skill-marketplace/scripts/recommend.py --top 10
+# 输出：评分最高的 10 个技能
+
+# 列出所有可用选项
+python3 skill-marketplace/scripts/recommend.py --list-scenarios
+python3 skill-marketplace/scripts/recommend.py --list-industries
+python3 skill-marketplace/scripts/recommend.py --list-roles
+```
+
+### 🔍 技能发现
+
+```bash
+# 浏览技能
 python3 skill-marketplace/scripts/browse.py
-```
 
-### 搜索技能
-
-```bash
+# 搜索技能
 python3 skill-marketplace/scripts/search.py "backup"
-```
 
-### 安装技能
-
-```bash
+# 安装技能
 python3 skill-marketplace/scripts/install.py model-switch
-```
 
-### 查看排行榜
-
-```bash
+# 查看排行榜
 python3 skill-marketplace/scripts/rankings.py
 ```
 

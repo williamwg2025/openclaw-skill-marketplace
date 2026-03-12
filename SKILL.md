@@ -1,11 +1,11 @@
 ---
 name: skill-marketplace
 displayName: Skill Marketplace
-version: 1.0.1
-description: 技能市场，发现、安装、管理 OpenClaw 技能。支持评分、评论、排行榜。所有脚本已包含，无需外部克隆。
+version: 1.1.0
+description: 技能市场，发现、安装、管理 OpenClaw 技能。支持智能推荐（场景/行业/身份）、评分、评论、排行榜 Top100。所有脚本已包含，无需外部克隆。
 license: MIT-0
 acceptLicenseTerms: true
-tags: marketplace, skills, discovery, management
+tags: marketplace, skills, discovery, management, recommendation, ai
 ---
 
 # Skill Marketplace - 技能市场
@@ -33,6 +33,30 @@ tags: marketplace, skills, discovery, management
 ---
 
 ## 📖 使用
+
+### 🎯 智能推荐（NEW!）
+
+```bash
+# 根据场景推荐
+python3 skill-marketplace/scripts/recommend.py --scenario "开发编程"
+
+# 根据行业推荐
+python3 skill-marketplace/scripts/recommend.py --industry "互联网"
+
+# 根据身份推荐
+python3 skill-marketplace/scripts/recommend.py --role "开发者"
+
+# 查看基础必装技能
+python3 skill-marketplace/scripts/recommend.py --basic
+
+# 查看排行榜 Top 10
+python3 skill-marketplace/scripts/recommend.py --top 10
+
+# 列出所有可用场景/行业/身份
+python3 skill-marketplace/scripts/recommend.py --list-scenarios
+python3 skill-marketplace/scripts/recommend.py --list-industries
+python3 skill-marketplace/scripts/recommend.py --list-roles
+```
 
 ### 浏览技能
 
