@@ -1,13 +1,3 @@
----
-name: skill-marketplace
-displayName: Skill Marketplace
-version: 1.0.0
-description: 技能市场，发现、安装、管理 OpenClaw 技能。支持评分、评论、排行榜。
-license: MIT-0
-acceptLicenseTerms: true
-tags: marketplace, skills, discovery, management
----
-
 # Skill Marketplace - 技能市场
 
 发现和安装优质 OpenClaw 技能。
@@ -27,6 +17,7 @@ tags: marketplace, skills, discovery, management
 ## 🚀 安装
 
 ```bash
+cd ~/.openclaw/workspace/skills
 # 技能已安装在：~/.openclaw/workspace/skills/skill-marketplace
 ```
 
@@ -52,10 +43,34 @@ python3 skill-marketplace/scripts/search.py "backup"
 python3 skill-marketplace/scripts/install.py model-switch
 ```
 
+### 查看排行榜
+
+```bash
+python3 skill-marketplace/scripts/rankings.py
+```
+
+---
+
+## 📁 目录结构
+
+```
+skill-marketplace/
+├── SKILL.md
+├── README.md
+├── config/
+│   └── marketplace.json
+└── scripts/
+    ├── browse.py
+    ├── search.py
+    ├── install.py
+    └── rankings.py
+```
+
 ---
 
 **作者：** @williamwg2025  
-**版本：** 1.0.0
+**版本：** 1.0.0  
+**许可证：** MIT-0
 
 ---
 
