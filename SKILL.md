@@ -1,11 +1,11 @@
 ---
 name: skill-marketplace
 displayName: Skill Marketplace
-version: 1.1.0
-description: 技能市场，发现、安装、管理 OpenClaw 技能。支持智能推荐（场景/行业/身份）、评分、评论、排行榜 Top100。所有脚本已包含，无需外部克隆。
+version: 1.2.0
+description: 技能市场，从 ClawHub 同步 100+ 技能。支持智能推荐（场景/行业/身份）、搜索、浏览、一键安装、评分、评论、排行榜 Top100。
 license: MIT-0
 acceptLicenseTerms: true
-tags: marketplace, skills, discovery, management, recommendation, ai
+tags: marketplace, skills, discovery, management, recommendation, ai, clawhub, sync
 ---
 
 # Skill Marketplace - 技能市场
@@ -34,7 +34,20 @@ tags: marketplace, skills, discovery, management, recommendation, ai
 
 ## 📖 使用
 
-### 🎯 智能推荐（NEW!）
+### 🔄 从 ClawHub 同步技能（v1.2.0 NEW!）
+
+```bash
+# 同步 ClawHub 所有技能（默认 100 个）
+python3 skill-marketplace/scripts/sync-from-clawhub.py
+
+# 同步更多技能
+python3 skill-marketplace/scripts/sync-from-clawhub.py --limit 500
+
+# 同步后查看摘要
+# 自动显示：技能总数、分类统计、Top 5 热门
+```
+
+### 🎯 智能推荐
 
 ```bash
 # 根据场景推荐
@@ -51,29 +64,41 @@ python3 skill-marketplace/scripts/recommend.py --basic
 
 # 查看排行榜 Top 10
 python3 skill-marketplace/scripts/recommend.py --top 10
-
-# 列出所有可用场景/行业/身份
-python3 skill-marketplace/scripts/recommend.py --list-scenarios
-python3 skill-marketplace/scripts/recommend.py --list-industries
-python3 skill-marketplace/scripts/recommend.py --list-roles
 ```
 
-### 浏览技能
+### 🔍 浏览和搜索
 
 ```bash
+# 浏览本地技能
 python3 skill-marketplace/scripts/browse.py
-```
 
-### 搜索技能
+# 浏览 ClawHub 所有技能
+python3 skill-marketplace/scripts/browse.py --from-clawhub
 
-```bash
+# 按分类浏览
+python3 skill-marketplace/scripts/browse.py --from-clawhub --category automation
+
+# 只看已安装
+python3 skill-marketplace/scripts/browse.py --from-clawhub --installed
+
+# 搜索本地技能
 python3 skill-marketplace/scripts/search.py "backup"
+
+# 搜索 ClawHub 所有技能
+python3 skill-marketplace/scripts/search.py "backup" --from-clawhub
 ```
 
-### 安装技能
+### 📦 安装技能
 
 ```bash
-python3 skill-marketplace/scripts/install.py model-switch
+# 安装技能（从 ClawHub）
+python3 skill-marketplace/scripts/install.py auto-backup
+
+# 强制重新安装
+python3 skill-marketplace/scripts/install.py model-switch --force
+
+# 列出已安装技能
+python3 skill-marketplace/scripts/install.py --list
 ```
 
 ---
