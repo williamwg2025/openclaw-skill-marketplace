@@ -19,10 +19,11 @@ tags:
   - recommendation
   - ai
   - clawhub
-  - search
-  - chinese-keywords
   - sync
   - installer
+  - search
+  - chinese-keywords
+  - enhanced-search
 ---
 
 # Skill Marketplace - 技能市场
