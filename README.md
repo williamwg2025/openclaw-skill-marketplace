@@ -59,13 +59,23 @@ npx clawhub install openclaw-memory-enhancer
 - **基础必装** - 所有用户都应该安装的基础技能
 - **排行榜** - Top 100 热门技能排行
 
-### 🔍 技能发现
+### 🔍 技能发现（v1.3.0 增强）
 - 🛒 **浏览技能** - 查看所有可用技能
-- 🔎 **搜索技能** - 按名称/标签搜索
+- 🔎 **精确搜索** - 完全匹配名称、标签（`--exact`）
+- 🔍 **模糊搜索** - 相似度匹配、中文关键词（`--fuzzy`）
+- 🧠 **智能搜索** - 自动选择精确/模糊（默认）
 - ⭐ **评分评论** - 用户评分和评论
 - 📊 **排行榜** - 下载量/评分排行
 - 🔔 **更新提醒** - 技能更新通知
 - 📦 **一键安装** - 自动下载安装
+
+**中文关键词映射：**
+- "备份" → "backup"
+- "模型" → "model"
+- "记忆" → "memory"
+- "搜索" → "search"
+- "设计" → "design"
+- [查看更多](#中文关键词映射)
 
 ---
 
@@ -107,7 +117,47 @@ python3 skill-marketplace/scripts/recommend.py --list-industries
 python3 skill-marketplace/scripts/recommend.py --list-roles
 ```
 
-### 🔍 技能发现
+### 🔍 增强搜索（v1.3.0 新增）
+
+```bash
+# 智能搜索（自动选择精确/模糊）
+python3 skill-marketplace/scripts/search-enhanced.py "backup"
+
+# 精确搜索（完全匹配名称、标签）
+python3 skill-marketplace/scripts/search-enhanced.py "openclaw-auto-backup" --exact
+
+# 模糊搜索（相似度匹配、中文关键词）
+python3 skill-marketplace/scripts/search-enhanced.py "备份" --fuzzy
+python3 skill-marketplace/scripts/search-enhanced.py "ai" --fuzzy
+
+# 在 ClawHub 同步的技能中搜索
+python3 skill-marketplace/scripts/search-enhanced.py "backup" --from-clawhub
+
+# 列出所有关键词映射
+python3 skill-marketplace/scripts/search-enhanced.py --list-keywords
+```
+
+**搜索示例：**
+```bash
+# 中文搜索
+python3 search-enhanced.py "备份" --fuzzy
+# 结果：openclaw-auto-backup
+
+python3 search-enhanced.py "模型切换" --fuzzy
+# 结果：openclaw-model-switch
+
+python3 search-enhanced.py "记忆" --fuzzy
+# 结果：openclaw-memory-enhancer
+
+# 英文搜索
+python3 search-enhanced.py "backup" --exact
+# 结果：精确匹配名称包含"backup"的技能
+
+python3 search-enhanced.py "design" --fuzzy
+# 结果：openclaw-ui-designer
+```
+
+### 🔍 传统搜索
 
 ```bash
 # 浏览技能
@@ -142,8 +192,35 @@ skill-marketplace/
 
 ---
 
+## 🈶 中文关键词映射
+
+**支持中文搜索，自动映射到英文技能名：**
+
+| 中文关键词 | 映射英文 | 对应技能 |
+|-----------|---------|---------|
+| 备份 | backup | openclaw-auto-backup |
+| 模型 | model | openclaw-model-switch |
+| 记忆 | memory | openclaw-memory-enhancer |
+| 搜索 | search | openclaw-search-pro |
+| 市场 | marketplace | openclaw-skill-marketplace |
+| 发布 | publish | openclaw-clawhub-publish |
+| 设计 | design | openclaw-ui-designer |
+| 小说/写作 | novel/writing | openclaw-webnovel-writer |
+| 多 Agent | multi-agent | openclaw-multi-agent-orchestrator |
+| 脚手架/模板 | scaffold/template | openclaw-skill-scaffold |
+
+**使用示例：**
+```bash
+# 中文搜索
+python3 search-enhanced.py "备份" --fuzzy
+python3 search-enhanced.py "模型切换" --fuzzy
+python3 search-enhanced.py "记忆增强" --fuzzy
+```
+
+---
+
 **作者：** @williamwg2025  
-**版本：** 1.0.0  
+**版本：** 1.3.0（新增增强搜索）  
 **许可证：** MIT-0
 
 ---
