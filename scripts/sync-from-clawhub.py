@@ -40,8 +40,9 @@ def fetch_clawhub_skills(limit=100):
         # 使用 npx clawhub explore 获取技能列表
         result = subprocess.run(
             ['npx', 'clawhub', 'explore', '--json', '--limit', str(limit)],
-            capture_output=True,
-            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
             timeout=60
         )
         
@@ -76,22 +77,33 @@ def sync_skills(skills):
         'skills': []
     }
     
-    # 处理每个技能
+    # 处理每个技能（兼容不同格式）
     for skill in skills:
-        # 跳过已本地安装的技能（避免重复）
-        skill_name = skill.get('name', skill.get('slug', ''))
+        # 兼容：可能是 dict 或字符串
+        if isinstance(skill, str):
+            skill_name = skill
+            skill_data = {}
+        elif isinstance(skill, dict):
+            skill_name = skill.get('name', skill.get('slug', ''))
+            skill_data = skill
+        else:
+            continue
+        
+        if not skill_name:
+            continue
+        
         local_skill = SKILLS_DIR / skill_name
         
         synced_skill = {
             'name': skill_name,
-            'displayName': skill.get('displayName', skill_name),
-            'version': skill.get('version', '1.0.0'),
-            'description': skill.get('description', ''),
-            'author': skill.get('author', 'Unknown'),
-            'rating': skill.get('rating', 0),
-            'downloads': skill.get('downloads', 0),
-            'tags': skill.get('tags', []),
-            'category': skill.get('category', 'general'),
+            'displayName': skill_data.get('displayName', skill_name.replace('-', ' ').title()),
+            'version': skill_data.get('version', '1.0.0'),
+            'description': skill_data.get('description', ''),
+            'author': skill_data.get('author', 'Unknown'),
+            'rating': skill_data.get('rating', 0),
+            'downloads': skill_data.get('downloads', 0),
+            'tags': skill_data.get('tags', []),
+            'category': skill_data.get('category', 'general'),
             'installed': local_skill.exists(),
             'clawhub_url': f"https://clawhub.ai/skills/{skill_name}"
         }

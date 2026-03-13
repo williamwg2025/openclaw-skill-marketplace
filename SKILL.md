@@ -1,11 +1,25 @@
 ---
-name: skill-marketplace
-displayName: Skill Marketplace
+name: openclaw-skill-marketplace
+displayName: OpenClaw Skill Marketplace - 技能市场
 version: 1.2.0
-description: 技能市场，从 ClawHub 同步 100+ 技能。支持智能推荐（场景/行业/身份）、搜索、浏览、一键安装、评分、评论、排行榜 Top100。
+description: |
+  OpenClaw 技能市场 - 从 ClawHub 同步 100+ 技能，智能推荐最适合你的技能组合。
+  支持场景推荐（开发/创作/办公）、行业推荐（互联网/金融/教育）、身份推荐（开发者/设计师/学生）。
+  浏览、搜索、一键安装、评分评论、排行榜 Top100。
+  关键词：openclaw, marketplace, skills, recommendation, clawhub, discovery
 license: MIT-0
 acceptLicenseTerms: true
-tags: marketplace, skills, discovery, management, recommendation, ai, clawhub, sync
+tags:
+  - openclaw
+  - marketplace
+  - skills
+  - discovery
+  - management
+  - recommendation
+  - ai
+  - clawhub
+  - sync
+  - installer
 ---
 
 # Skill Marketplace - 技能市场
