@@ -2,17 +2,19 @@
 
 Discover, install, and manage OpenClaw skills from ClawHub.
 
+**Version:** 2.0.0 - Now supports both ClawHub and GitHub installation!
+
 [中文版本](README.md)
 
 ---
 
 ## ✨ Features
 
-- 🛒 Browse skills - View 100+ skills
-- 🎯 Smart recommendations - By scenario/industry/role
-- 🔍 Enhanced search - Exact/fuzzy/Chinese keywords
-- 📊 Rankings - Top 100 skills
-- 📦 One-click install - Easy installation
+- 🛒 **Browse skills** - View 100+ skills
+- 🎯 **Smart recommendations** - By scenario/industry/role
+- 🔍 **Enhanced search** - Exact/fuzzy/Chinese keywords
+- 📊 **Rankings** - Top 100 skills
+- 📦 **One-click install** - Support both ClawHub and GitHub
 
 ---
 
@@ -24,77 +26,60 @@ cd ~/.openclaw/workspace/skills
 chmod +x skill-marketplace/scripts/*.py
 ```
 
-**That's it! All scripts included, no external cloning needed.**
-
 ---
 
-## 📖 Usage
+## 📦 Install Skills (v2.0.0)
+
+**Two installation methods:**
 
 ```bash
-# Basic usage
-python3 skill-marketplace/scripts/*.py
+# Method 1: From ClawHub (recommended)
+python3 skill-marketplace/scripts/install.py auto-backup
 
-# Check help
-python3 skill-marketplace/scripts/*.py --help
+# Method 2: From GitHub
+python3 skill-marketplace/scripts/install.py auto-backup --from-git
+
+# Method 3: Custom GitHub URL
+python3 skill-marketplace/scripts/install.py my-skill --github-url "https://github.com/user/repo.git"
+
+# Force ClawHub
+python3 skill-marketplace/scripts/install.py auto-backup --from-clawhub
+
+# Force Git
+python3 skill-marketplace/scripts/install.py auto-backup --from-git
+
+# Verify after install
+python3 skill-marketplace/scripts/install.py auto-backup --verify
+
+# List installed skills
+python3 skill-marketplace/scripts/install.py --list
 ```
 
-**Purpose:** Discover and install OpenClaw skills
+**Auto-selection:**
+- Default: Prefer ClawHub (if available)
+- Fallback: Switch to Git if ClawHub unavailable
+- Use flags to force specific method
 
 ---
 
-## 🛠️ Scripts
-
-| Script | Function |
-|--------|----------|
-| `*.py` | Main scripts (check scripts/ directory) |
-
----
-
-## 🔒 Security Notes
+## 🔒 Security
 
 ### Code Source ✅
-**All scripts included in the package:**
+**All scripts included**
 - ❌ No external cloning
 - ❌ No downloading external code
 
 ### Network Access
-- **Scripts run locally** - No network calls (unless specified)
+- **sync-from-clawhub.py** - Fetch skill list from ClawHub API
+- **install.py** - Download skills from GitHub or ClawHub
+- **search-enhanced.py** - Local search, no network
 
 ### File Access
-- **Read:** Configuration files in skill directory
-- **Write:** Only when explicitly specified
-
-### Data Security
-- **Local processing** - All operations run locally
-- **No upload** - No data sent to external servers
-
-### Usage Tips
-1. Check scripts/ directory for available scripts
-2. Test with simple commands first
-3. Don't provide sensitive information
+- **Read:** Skill directory, config files
+- **Write:** Install skills to skills/ directory
 
 ---
 
 **Author:** @williamwg2025  
-**Version:** Check SKILL.md  
+**Version:** 2.0.0  
 **License:** MIT-0
-
----
-
-## 📁 Directory Structure
-
-```
-skill-marketplace/
-├── SKILL.md          # Skill metadata and documentation
-├── README.md         # Chinese documentation
-├── README_EN.md      # English documentation
-├── config/           # Configuration files (optional)
-│   └── *.json
-└── scripts/          # Script files
-    ├── *.py
-    └── *.sh
-```
-
----
-
-**Last updated:** 2026-03-13
